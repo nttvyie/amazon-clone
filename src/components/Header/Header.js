@@ -6,13 +6,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { logo } from '../../assets/index';
 import { allItems } from '../../constants';
+import HeaderBottom from './HeaderBottom';
 
 const Header = () => {
     const [showAll, setShowAll] = useState(false);
 
     return (
-        <div>
-            <div className="flex w-full gap-4 bg-amazon_blue px-4 py-3 text-white">
+        <div className="w-full">
+            <div className="w-full flex gap-4 bg-amazon_blue px-4 py-3 text-white">
                 {/* ========== Image Start here ========== */}
                 <div className="headerHover">
                     <img className="mt-2 w-24" src={logo} alt="" />
@@ -93,6 +94,7 @@ const Header = () => {
                 </div>
                 {/* ========== Cart End here ========== */}
             </div>
+            <HeaderBottom />
         </div>
     );
 };
