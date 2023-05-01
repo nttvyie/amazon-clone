@@ -20,7 +20,7 @@ const Header = () => {
                 </div>
                 {/* ========== Image End here ========== */}
                 {/* ========== Deliver Start here ========== */}
-                <div className="headerHover">
+                <div className="hidden md:inline-flex headerHover">
                     <LocationOnIcon />
                     <p className="flex flex-col text-sm font-light text-lightText">
                         Deliver to{' '}
@@ -31,7 +31,7 @@ const Header = () => {
                 </div>
                 {/* ========== Deliver End here ========== */}
                 {/* ========== Search Start here ========== */}
-                <div className="relative h-10 flex-grow rounded-md bg-white">
+                <div className="hidden lgl:inline-flex h-10 rounded-md flex-grow relative">
                     <span
                         onClick={() => setShowAll(!showAll)}
                         className="font-title Font flex h-full w-14 cursor-pointer items-center justify-center rounded-bl-md rounded-tl-md border-2 bg-gray-200 text-sm text-amazon_blue duration-300 hover:bg-gray-300"
@@ -63,10 +63,10 @@ const Header = () => {
                 {/* ========== Search End here ========== */}
                 {/* ========== Signin Start here ========== */}
                 <div className="headerHover flex flex-col items-start justify-center">
-                    <p className="text-xs font-light text-lightText">
+                    <p className="text-sm mdl:text-xs text-white font-light mdl:text-lightText">
                         Hello, sign in
                     </p>
-                    <p className="-mt-1 text-sm font-semibold text-whiteText">
+                    <p className="hidden md:inline-flex -mt-1 text-sm font-semibold text-whiteText">
                         Accounts & Lists{' '}
                         <span>
                             <ArrowDropDownOutlinedIcon />
@@ -75,7 +75,7 @@ const Header = () => {
                 </div>
                 {/* ========== Signin End here ========== */}
                 {/* ========== Orders Start here ========== */}
-                <div className="headerHover flex flex-col items-start justify-center">
+                <div className="hidden mdl:flex headerHover flex-col items-start justify-center">
                     <p className="text-xs font-light text-lightText">Returns</p>
                     <p className="-mt-1 text-sm font-semibold text-whiteText">
                         & Orders

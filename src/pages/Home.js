@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div>
             <Banner />
-            <div className="w-full -mt-36">
+            <div className="w-full -mt-8 xl:-mt-36">
                 <Products />
             </div>
         </div>
