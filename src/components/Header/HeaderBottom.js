@@ -22,7 +22,7 @@ const HeaderBottom = () => {
     return (
         <div className="w-full px-4 h-[36px] bg-amazon_light text-white flex items-center">
             {/* ============ ListItems Start here ============ */}
-            <ul className="flex items-center gap-2 text-sm tracking-wide">
+            <ul className="flex gap-2 text-sm tracking-wide">
                 <li
                     onClick={() => setSidebar(true)}
                     className="headerHover flex items-center gap-1"
@@ -38,7 +38,7 @@ const HeaderBottom = () => {
             {/* ============ ListItems End here ============== */}
             {/* ============ sideNav Start here ============== */}
             {sidebar && (
-                <div className="w-full h-screen text-black fixed top-0 left-0 bg-amazon_blue bg-opacity-50">
+                <div className="z-10 w-full h-screen text-black fixed top-0 left-0 bg-amazon_blue bg-opacity-50">
                     <div className="w-full h-full relative">
                         <motion.div
                             ref={ref}

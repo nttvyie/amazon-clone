@@ -12,7 +12,7 @@ const Header = () => {
     const [showAll, setShowAll] = useState(false);
 
     return (
-        <div className="w-full">
+        <div className="w-full sticky top-0 z-40">
             <div className="w-full flex gap-4 bg-amazon_blue px-4 py-3 text-white">
                 {/* ========== Image Start here ========== */}
                 <div className="headerHover">
@@ -25,13 +25,13 @@ const Header = () => {
                     <p className="flex flex-col text-sm font-light text-lightText">
                         Deliver to{' '}
                         <span className="-mt-1 text-sm font-semibold text-whiteText">
-                            Oman
+                            Vietnam
                         </span>
                     </p>
                 </div>
                 {/* ========== Deliver End here ========== */}
                 {/* ========== Search Start here ========== */}
-                <div className="relative flex h-10 flex-grow rounded-md bg-white">
+                <div className="relative h-10 flex-grow rounded-md bg-white">
                     <span
                         onClick={() => setShowAll(!showAll)}
                         className="font-title Font flex h-full w-14 cursor-pointer items-center justify-center rounded-bl-md rounded-tl-md border-2 bg-gray-200 text-sm text-amazon_blue duration-300 hover:bg-gray-300"
