@@ -5,12 +5,14 @@ import {
     Outlet,
     Route,
     RouterProvider,
-    ScrollRestoration,
 } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home';
 import { productsData } from './api/api';
+import Signin from './pages/Signin';
+import Registration from './pages/Registration';
+import Checkout from './pages/Checkout';
 
 const Layout = () => {
     return (
@@ -33,6 +35,9 @@ function App() {
                         loader={productsData}
                     ></Route>
                 </Route>
+                <Route path="/signin" element={<Signin />}></Route>
+                <Route path="/registration" element={<Registration />}></Route>
+                <Route path="/checkout" element={<Checkout />}></Route>
             </Route>,
         ),
     );
