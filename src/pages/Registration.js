@@ -1,10 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+} from 'firebase/auth';
+import { RotatingLines } from 'react-loader-spinner';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { motion } from 'framer-motion';
 import { darkLogo } from '../assets/index';
 
 const Registration = () => {
+    const navigate = useNavigate();
+    const auth = getAuth();
+
     const [clientName, setClientName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +26,11 @@ const Registration = () => {
     const [errEmail, setErrEmail] = useState('');
     const [errPassword, setErrPassword] = useState('');
     const [errCPassword, setErrCPassword] = useState('');
+    const [firebaseErr, setFirebaseErr] = useState('');
+
+    // Loading State
+    const [loading, setLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
 
     // Handle Function
     const handleName = (e) => {
@@ -81,11 +97,36 @@ const Registration = () => {
             cPassword &&
             cPassword === password
         ) {
-            console.log(clientName, email, password, cPassword);
+            setLoading(true);
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    updateProfile(auth.currentUser, {
+                        displayName: clientName,
+                        photoURL:
+                            'https://img.lovepik.com/element/40120/5298.png_300.png',
+                    });
+                    // Signed in
+                    const user = userCredential.user;
+                    setLoading(false);
+                    setSuccessMsg('Account created successfully!');
+                    setTimeout(() => {
+                        navigate('/signin');
+                    }, 3000);
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    if (errorCode.includes('auth/email-already-in-use')) {
+                        setFirebaseErr('Email already in use, try another one');
+                    }
+                    // ..
+                });
             setClientName('');
             setEmail('');
             setPassword('');
             setCPassword('');
+            setErrPassword('');
+            setFirebaseErr('');
         }
     };
 
@@ -119,9 +160,7 @@ const Registration = () => {
                             </div>
                             {/* Email or mobile phone number Input */}
                             <div className="flex flex-col gap-2">
-                                <p className="text-sm font-medium">
-                                    Email or mobile phone number
-                                </p>
+                                <p className="text-sm font-medium">Email</p>
                                 <input
                                     onChange={handleEmail}
                                     value={email}
@@ -134,6 +173,14 @@ const Registration = () => {
                                             !
                                         </span>
                                         {errEmail}
+                                    </p>
+                                )}
+                                {firebaseErr && (
+                                    <p className="text-red-600 text-xs font-semibold tracking-wide flex items-center gap-2 -mt-1.5">
+                                        <span className="italic font-titleFont font-extrabold text-base">
+                                            !
+                                        </span>
+                                        {firebaseErr}
                                     </p>
                                 )}
                             </div>
@@ -184,6 +231,27 @@ const Registration = () => {
                             >
                                 Continue
                             </button>
+                            {loading && (
+                                <div className="flex justify-center">
+                                    <RotatingLines
+                                        strokeColor="#febd69"
+                                        strokeWidth="5"
+                                        animationDuration="0.75"
+                                        width="50"
+                                        visible={true}
+                                    />
+                                </div>
+                            )}
+                            {successMsg && (
+                                <div
+                                    initial={{ y: 10, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="text-base font-titleFont font-semibold text-green-500 border-[1px] border-green-500 px-2 text-center"
+                                >
+                                    <motion.p>{successMsg}</motion.p>
+                                </div>
+                            )}
                         </div>
                         <p className="text-xs text-black leading-4 mt-4">
                             By Continuing, you agree to Amazon's{' '}

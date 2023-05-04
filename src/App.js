@@ -6,6 +6,7 @@ import {
     Route,
     RouterProvider,
 } from 'react-router-dom';
+import firebaseConfig from './firebase.config';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home';
