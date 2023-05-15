@@ -103,7 +103,7 @@ const Registration = () => {
                     updateProfile(auth.currentUser, {
                         displayName: clientName,
                         photoURL:
-                            'https://img.lovepik.com/element/40120/5298.png_300.png',
+                            'https://static.vecteezy.com/system/resources/previews/020/937/943/original/person-avatar-with-tick-mark-showing-concept-of-verified-user-vector.jpg',
                     });
                     // Signed in
                     const user = userCredential.user;

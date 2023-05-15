@@ -7,8 +7,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SideNavContent from './SideNavContent';
 import { duration } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const HeaderBottom = () => {
+    const userInfo = useSelector((state) => state.amazonReducer.userInfo);
     const ref = useRef();
     const [sidebar, setSidebar] = useState(false);
     useEffect(() => {
@@ -54,10 +56,24 @@ const HeaderBottom = () => {
                             className="w-[80%] md:w-[350px] h-full bg-white border border-black"
                         >
                             <div className="w-full bg-amazon_light text-white py-2 px-6 flex items-center gap-4">
-                                <AccountCircleIcon />
-                                <h3 className="font-titleFont font-bold text-lg tracking-wide">
-                                    Hello, Sign In
-                                </h3>
+                                {userInfo ? (
+                                    <img
+                                        className="w-10 h-10 rounded-full"
+                                        src={userInfo.image}
+                                        alt="UserImg"
+                                    />
+                                ) : (
+                                    <AccountCircleIcon />
+                                )}
+                                {userInfo ? (
+                                    <h3 className="font-titleFont font-bold text-lg tracking-wide">
+                                        {userInfo.userName}
+                                    </h3>
+                                ) : (
+                                    <h3 className="font-titleFont font-bold text-lg tracking-wide">
+                                        Hello, Sign In
+                                    </h3>
+                                )}
                             </div>
                             <SideNavContent
                                 title="Digital Content & Devices"

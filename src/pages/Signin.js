@@ -5,8 +5,12 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { darkLogo } from '../assets/index';
 import { RotatingLines } from 'react-loader-spinner';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../redux/amazonSlice';
 
 const Signin = () => {
+    const dispatch = useDispatch();
+
     const auth = getAuth();
     const navigate = useNavigate('');
 
@@ -49,6 +53,14 @@ const Signin = () => {
                     // Signed in
                     const user = userCredential.user;
                     console.log(user);
+                    dispatch(
+                        setUserInfo({
+                            _id: user.uid,
+                            userName: user.displayName,
+                            email: user.email,
+                            image: user.photoURL,
+                        }),
+                    );
                     // ...
                     setLoading(false);
                     setSuccessMsg('Logged in successfully! Welcome you back!');
