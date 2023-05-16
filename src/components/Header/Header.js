@@ -38,9 +38,11 @@ const Header = () => {
         <div className="w-full sticky top-0 z-40">
             <div className="w-full flex gap-4 bg-amazon_blue px-4 py-3 text-white">
                 {/* ========== Image Start here ========== */}
-                <div className="headerHover">
-                    <img className="mt-2 w-24" src={logo} alt="" />
-                </div>
+                <Link to="/">
+                    <div className="headerHover">
+                        <img className="mt-2 w-24" src={logo} alt="" />
+                    </div>
+                </Link>
                 {/* ========== Image End here ========== */}
                 {/* ========== Deliver Start here ========== */}
                 <div className="hidden md:inline-flex headerHover">
